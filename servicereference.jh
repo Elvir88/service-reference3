@@ -1,0 +1,82 @@
+/** Дом */
+entity House {
+	houseId Integer required
+}
+
+/** Локация */
+entity Location {
+	title String required
+}
+
+/** Услуга */
+entity Service {
+	serviceId String required unique
+    title String required
+}
+
+/** Услуга в локации */
+entity ServiceOnLocation {
+	datefrom Instant required
+    dateTo Instant
+}
+
+entity Tariff {
+	title String required
+	cost BigDecimal required
+}
+
+entity TariffGroup {
+	title String required
+}
+
+entity PromotionOnLocation {
+	title String required
+	dateFrom Instant required
+	dateTo Instant
+}
+
+entity PacketDiscount {
+	title String required
+    cost BigDecimal required
+}
+
+entity MarketingResearch {
+	title String required
+}
+
+entity ServiceInPacketDiscount {
+	coefficient Float required max(1) min(0)
+}
+
+entity ContractPattern {
+	title String required
+    patternId Integer required
+}
+
+relationship OneToMany {
+    Location to House{location}, 
+    TariffGroup{tariff} to Tariff, 
+    Location to ServiceOnLocation{location},
+    Location to PromotionOnLocation{location},
+    PacketDiscount to ServiceInPacketDiscount{packetDiscount},
+    
+}
+
+relationship OneToOne {
+    ServiceOnLocation{service} to Service,
+    ServiceOnLocation{tariffGroup} to TariffGroup,
+    ServiceOnLocation{pattern} to ContractPattern,
+    Service{parent} to Service, 
+    PromotionOnLocation{packetDiscount} to PacketDiscount,
+    ServiceInPacketDiscount{service} to Service,
+    ServiceInPacketDiscount{tariff} to Tariff,
+    MarketingResearch{service} to Service,
+    MarketingResearch{tariff} to Tariff,
+    PromotionOnLocation{marketingResearch} to MarketingResearch
+}
+
+// Set pagination options
+paginate Location, House, Service, ServiceOnLocation,
+Tariff, TariffGroup, ContractPattern, 
+PromotionOnLocation, PacketDiscount, MarketingResearch with pagination
+
