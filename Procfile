@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -Xmx256m -jar target/*.jar --spring.profiles.active=prod,heroku,no-liquibase
+web: java -Dserver.port=$PORT $JAVA_OPTS -jar build/libs/service-reference-3-0.0.1-SNAPSHOT.jar
