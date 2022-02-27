@@ -156,14 +156,21 @@ public class PromotionOnLocationResource {
      * {@code GET  /promotion-on-locations} : get all the promotionOnLocations.
      *
      * @param pageable the pagination information.
+     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of promotionOnLocations in body.
      */
     @GetMapping("/promotion-on-locations")
     public ResponseEntity<List<PromotionOnLocation>> getAllPromotionOnLocations(
-        @org.springdoc.api.annotations.ParameterObject Pageable pageable
+        @org.springdoc.api.annotations.ParameterObject Pageable pageable,
+        @RequestParam(required = false, defaultValue = "true") boolean eagerload
     ) {
         log.debug("REST request to get a page of PromotionOnLocations");
-        Page<PromotionOnLocation> page = promotionOnLocationRepository.findAll(pageable);
+        Page<PromotionOnLocation> page;
+        if (eagerload) {
+            page = promotionOnLocationRepository.findAllWithEagerRelationships(pageable);
+        } else {
+            page = promotionOnLocationRepository.findAll(pageable);
+        }
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
@@ -177,7 +184,7 @@ public class PromotionOnLocationResource {
     @GetMapping("/promotion-on-locations/{id}")
     public ResponseEntity<PromotionOnLocation> getPromotionOnLocation(@PathVariable Long id) {
         log.debug("REST request to get PromotionOnLocation : {}", id);
-        Optional<PromotionOnLocation> promotionOnLocation = promotionOnLocationRepository.findById(id);
+        Optional<PromotionOnLocation> promotionOnLocation = promotionOnLocationRepository.findOneWithEagerRelationships(id);
         return ResponseUtil.wrapOrNotFound(promotionOnLocation);
     }
 

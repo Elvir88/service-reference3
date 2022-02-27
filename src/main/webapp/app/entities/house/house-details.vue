@@ -17,7 +17,9 @@
           </dt>
           <dd>
             <div v-if="house.location">
-              <router-link :to="{ name: 'LocationView', params: { locationId: house.location.id } }">{{ house.location.id }}</router-link>
+              <router-link :to="{ name: 'LocationView', params: { locationId: house.location.id } }">{{
+                house.location.title
+              }}</router-link>
             </div>
           </dd>
         </dl>

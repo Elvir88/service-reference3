@@ -24,10 +24,11 @@
   "readOnly": false,
   "relationships": [
     {
+      "otherEntityField": "title",
       "otherEntityName": "service",
       "otherEntityRelationshipName": "service",
       "ownerSide": true,
-      "relationshipName": "parent",
+      "relationshipName": "service",
       "relationshipType": "one-to-one"
     }
   ],

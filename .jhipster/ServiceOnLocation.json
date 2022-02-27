@@ -23,6 +23,7 @@
   "readOnly": false,
   "relationships": [
     {
+      "otherEntityField": "title",
       "otherEntityName": "service",
       "otherEntityRelationshipName": "serviceOnLocation",
       "ownerSide": true,
@@ -30,6 +31,7 @@
       "relationshipType": "one-to-one"
     },
     {
+      "otherEntityField": "title",
       "otherEntityName": "tariffGroup",
       "otherEntityRelationshipName": "serviceOnLocation",
       "ownerSide": true,
@@ -37,6 +39,7 @@
       "relationshipType": "one-to-one"
     },
     {
+      "otherEntityField": "title",
       "otherEntityName": "contractPattern",
       "otherEntityRelationshipName": "serviceOnLocation",
       "ownerSide": true,
@@ -44,6 +47,7 @@
       "relationshipType": "one-to-one"
     },
     {
+      "otherEntityField": "title",
       "otherEntityName": "location",
       "otherEntityRelationshipName": "serviceOnLocation",
       "relationshipName": "location",

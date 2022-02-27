@@ -40,10 +40,6 @@
               <span v-text="$t('serviceReference3App.tariff.cost')">Cost</span>
               <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'cost'"></jhi-sort-indicator>
             </th>
-            <th scope="row" v-on:click="changeOrder('tariffGroup.id')">
-              <span v-text="$t('serviceReference3App.tariff.tariffGroup')">Tariff Group</span>
-              <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'tariffGroup.id'"></jhi-sort-indicator>
-            </th>
             <th scope="row"></th>
           </tr>
         </thead>
@@ -54,13 +50,6 @@
             </td>
             <td>{{ tariff.title }}</td>
             <td>{{ tariff.cost }}</td>
-            <td>
-              <div v-if="tariff.tariffGroup">
-                <router-link :to="{ name: 'TariffGroupView', params: { tariffGroupId: tariff.tariffGroup.id } }">{{
-                  tariff.tariffGroup.id
-                }}</router-link>
-              </div>
-            </td>
             <td class="text-right">
               <div class="btn-group">
                 <router-link :to="{ name: 'TariffView', params: { tariffId: tariff.id } }" custom v-slot="{ navigate }">

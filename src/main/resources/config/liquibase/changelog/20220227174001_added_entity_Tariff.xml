@@ -20,11 +20,22 @@
             <column name="cost" type="decimal(21,2)">
                 <constraints nullable="false" />
             </column>
-            <column name="tariff_group_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
+    </changeSet>
+
+    <changeSet id="20220227174001-1-relations" author="jhipster">
+
+        <createTable tableName="rel_tariff__tariff_group">
+            <column name="tariff_group_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="tariff_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="tariff_id, tariff_group_id" tableName="rel_tariff__tariff_group"/>
     </changeSet>
 
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->

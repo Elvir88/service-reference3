@@ -150,14 +150,21 @@ public class MarketingResearchResource {
      * {@code GET  /marketing-researches} : get all the marketingResearches.
      *
      * @param pageable the pagination information.
+     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of marketingResearches in body.
      */
     @GetMapping("/marketing-researches")
     public ResponseEntity<List<MarketingResearch>> getAllMarketingResearches(
-        @org.springdoc.api.annotations.ParameterObject Pageable pageable
+        @org.springdoc.api.annotations.ParameterObject Pageable pageable,
+        @RequestParam(required = false, defaultValue = "true") boolean eagerload
     ) {
         log.debug("REST request to get a page of MarketingResearches");
-        Page<MarketingResearch> page = marketingResearchRepository.findAll(pageable);
+        Page<MarketingResearch> page;
+        if (eagerload) {
+            page = marketingResearchRepository.findAllWithEagerRelationships(pageable);
+        } else {
+            page = marketingResearchRepository.findAll(pageable);
+        }
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
@@ -171,7 +178,7 @@ public class MarketingResearchResource {
     @GetMapping("/marketing-researches/{id}")
     public ResponseEntity<MarketingResearch> getMarketingResearch(@PathVariable Long id) {
         log.debug("REST request to get MarketingResearch : {}", id);
-        Optional<MarketingResearch> marketingResearch = marketingResearchRepository.findById(id);
+        Optional<MarketingResearch> marketingResearch = marketingResearchRepository.findOneWithEagerRelationships(id);
         return ResponseUtil.wrapOrNotFound(marketingResearch);
     }
 

@@ -86,7 +86,7 @@
                 v-for="serviceOption in services"
                 :key="serviceOption.id"
               >
-                {{ serviceOption.id }}
+                {{ serviceOption.title }}
               </option>
             </select>
           </div>
@@ -114,7 +114,7 @@
                 v-for="tariffGroupOption in tariffGroups"
                 :key="tariffGroupOption.id"
               >
-                {{ tariffGroupOption.id }}
+                {{ tariffGroupOption.title }}
               </option>
             </select>
           </div>
@@ -142,7 +142,7 @@
                 v-for="contractPatternOption in contractPatterns"
                 :key="contractPatternOption.id"
               >
-                {{ contractPatternOption.id }}
+                {{ contractPatternOption.title }}
               </option>
             </select>
           </div>
@@ -170,7 +170,7 @@
                 v-for="locationOption in locations"
                 :key="locationOption.id"
               >
-                {{ locationOption.id }}
+                {{ locationOption.title }}
               </option>
             </select>
           </div>

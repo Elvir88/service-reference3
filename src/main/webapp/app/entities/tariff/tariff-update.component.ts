@@ -54,6 +54,7 @@ export default class TariffUpdate extends Vue {
         this.currentLanguage = this.$store.getters.currentLanguage;
       }
     );
+    this.tariff.tariffGroups = [];
   }
 
   public save(): void {
@@ -120,5 +121,12 @@ export default class TariffUpdate extends Vue {
       .then(res => {
         this.tariffGroups = res.data;
       });
+  }
+
+  public getSelected(selectedVals, option): any {
+    if (selectedVals) {
+      return selectedVals.find(value => option.id === value.id) ?? option;
+    }
+    return option;
   }
 }

@@ -4,9 +4,9 @@ export interface ITariff {
   id?: number;
   title?: string;
   cost?: number;
-  tariffGroup?: ITariffGroup | null;
+  tariffGroups?: ITariffGroup[] | null;
 }
 
 export class Tariff implements ITariff {
-  constructor(public id?: number, public title?: string, public cost?: number, public tariffGroup?: ITariffGroup | null) {}
+  constructor(public id?: number, public title?: string, public cost?: number, public tariffGroups?: ITariffGroup[] | null) {}
 }

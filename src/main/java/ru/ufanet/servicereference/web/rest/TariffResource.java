@@ -152,12 +152,21 @@ public class TariffResource {
      * {@code GET  /tariffs} : get all the tariffs.
      *
      * @param pageable the pagination information.
+     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of tariffs in body.
      */
     @GetMapping("/tariffs")
-    public ResponseEntity<List<Tariff>> getAllTariffs(@org.springdoc.api.annotations.ParameterObject Pageable pageable) {
+    public ResponseEntity<List<Tariff>> getAllTariffs(
+        @org.springdoc.api.annotations.ParameterObject Pageable pageable,
+        @RequestParam(required = false, defaultValue = "true") boolean eagerload
+    ) {
         log.debug("REST request to get a page of Tariffs");
-        Page<Tariff> page = tariffRepository.findAll(pageable);
+        Page<Tariff> page;
+        if (eagerload) {
+            page = tariffRepository.findAllWithEagerRelationships(pageable);
+        } else {
+            page = tariffRepository.findAll(pageable);
+        }
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
@@ -171,7 +180,7 @@ public class TariffResource {
     @GetMapping("/tariffs/{id}")
     public ResponseEntity<Tariff> getTariff(@PathVariable Long id) {
         log.debug("REST request to get Tariff : {}", id);
-        Optional<Tariff> tariff = tariffRepository.findById(id);
+        Optional<Tariff> tariff = tariffRepository.findOneWithEagerRelationships(id);
         return ResponseUtil.wrapOrNotFound(tariff);
     }
 

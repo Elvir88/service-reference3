@@ -54,17 +54,22 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="form-control-label" v-text="$t('serviceReference3App.tariff.tariffGroup')" for="tariff-tariffGroup"
-              >Tariff Group</label
+            <label v-text="$t('serviceReference3App.tariff.tariffGroup')" for="tariff-tariffGroup">Tariff Group</label>
+            <select
+              class="form-control"
+              id="tariff-tariffGroups"
+              data-cy="tariffGroup"
+              multiple
+              name="tariffGroup"
+              v-if="tariff.tariffGroups !== undefined"
+              v-model="tariff.tariffGroups"
             >
-            <select class="form-control" id="tariff-tariffGroup" data-cy="tariffGroup" name="tariffGroup" v-model="tariff.tariffGroup">
-              <option v-bind:value="null"></option>
               <option
-                v-bind:value="tariff.tariffGroup && tariffGroupOption.id === tariff.tariffGroup.id ? tariff.tariffGroup : tariffGroupOption"
+                v-bind:value="getSelected(tariff.tariffGroups, tariffGroupOption)"
                 v-for="tariffGroupOption in tariffGroups"
                 :key="tariffGroupOption.id"
               >
-                {{ tariffGroupOption.id }}
+                {{ tariffGroupOption.title }}
               </option>
             </select>
           </div>

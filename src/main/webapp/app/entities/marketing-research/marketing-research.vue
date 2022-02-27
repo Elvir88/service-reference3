@@ -36,13 +36,13 @@
               <span v-text="$t('serviceReference3App.marketingResearch.title')">Title</span>
               <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'title'"></jhi-sort-indicator>
             </th>
-            <th scope="row" v-on:click="changeOrder('service.id')">
+            <th scope="row" v-on:click="changeOrder('service.title')">
               <span v-text="$t('serviceReference3App.marketingResearch.service')">Service</span>
-              <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'service.id'"></jhi-sort-indicator>
+              <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'service.title'"></jhi-sort-indicator>
             </th>
-            <th scope="row" v-on:click="changeOrder('tariff.id')">
+            <th scope="row" v-on:click="changeOrder('tariff.title')">
               <span v-text="$t('serviceReference3App.marketingResearch.tariff')">Tariff</span>
-              <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'tariff.id'"></jhi-sort-indicator>
+              <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'tariff.title'"></jhi-sort-indicator>
             </th>
             <th scope="row"></th>
           </tr>
@@ -58,14 +58,14 @@
             <td>
               <div v-if="marketingResearch.service">
                 <router-link :to="{ name: 'ServiceView', params: { serviceId: marketingResearch.service.id } }">{{
-                  marketingResearch.service.id
+                  marketingResearch.service.title
                 }}</router-link>
               </div>
             </td>
             <td>
               <div v-if="marketingResearch.tariff">
                 <router-link :to="{ name: 'TariffView', params: { tariffId: marketingResearch.tariff.id } }">{{
-                  marketingResearch.tariff.id
+                  marketingResearch.tariff.title
                 }}</router-link>
               </div>
             </td>

@@ -20,8 +20,8 @@
             <column name="title" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
-            <column name="parent_id" type="bigint">
-                <constraints nullable="true" unique="true" uniqueConstraintName="ux_service__parent_id" />
+            <column name="service_id" type="bigint">
+                <constraints nullable="true" unique="true" uniqueConstraintName="ux_service__service_id" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>

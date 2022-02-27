@@ -53,15 +53,15 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="form-control-label" v-text="$t('serviceReference3App.service.parent')" for="service-parent">Parent</label>
-            <select class="form-control" id="service-parent" data-cy="parent" name="parent" v-model="service.parent">
+            <label class="form-control-label" v-text="$t('serviceReference3App.service.service')" for="service-service">Service</label>
+            <select class="form-control" id="service-service" data-cy="service" name="service" v-model="service.service">
               <option v-bind:value="null"></option>
               <option
-                v-bind:value="service.parent && serviceOption.id === service.parent.id ? service.parent : serviceOption"
+                v-bind:value="service.service && serviceOption.id === service.service.id ? service.service : serviceOption"
                 v-for="serviceOption in services"
                 :key="serviceOption.id"
               >
-                {{ serviceOption.id }}
+                {{ serviceOption.title }}
               </option>
             </select>
           </div>

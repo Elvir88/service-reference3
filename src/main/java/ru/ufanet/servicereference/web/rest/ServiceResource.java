@@ -152,12 +152,21 @@ public class ServiceResource {
      * {@code GET  /services} : get all the services.
      *
      * @param pageable the pagination information.
+     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of services in body.
      */
     @GetMapping("/services")
-    public ResponseEntity<List<Service>> getAllServices(@org.springdoc.api.annotations.ParameterObject Pageable pageable) {
+    public ResponseEntity<List<Service>> getAllServices(
+        @org.springdoc.api.annotations.ParameterObject Pageable pageable,
+        @RequestParam(required = false, defaultValue = "true") boolean eagerload
+    ) {
         log.debug("REST request to get a page of Services");
-        Page<Service> page = serviceRepository.findAll(pageable);
+        Page<Service> page;
+        if (eagerload) {
+            page = serviceRepository.findAllWithEagerRelationships(pageable);
+        } else {
+            page = serviceRepository.findAll(pageable);
+        }
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
@@ -171,7 +180,7 @@ public class ServiceResource {
     @GetMapping("/services/{id}")
     public ResponseEntity<Service> getService(@PathVariable Long id) {
         log.debug("REST request to get Service : {}", id);
-        Optional<Service> service = serviceRepository.findById(id);
+        Optional<Service> service = serviceRepository.findOneWithEagerRelationships(id);
         return ResponseUtil.wrapOrNotFound(service);
     }
 
