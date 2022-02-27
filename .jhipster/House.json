@@ -1,0 +1,29 @@
+{
+  "applications": "*",
+  "changelogDate": "20220227173957",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "house",
+  "fields": [
+    {
+      "fieldName": "houseId",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "Дом",
+  "jpaMetamodelFiltering": false,
+  "name": "House",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "location",
+      "otherEntityRelationshipName": "house",
+      "relationshipName": "location",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

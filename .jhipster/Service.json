@@ -1,0 +1,35 @@
+{
+  "applications": "*",
+  "changelogDate": "20220227173959",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "service",
+  "fields": [
+    {
+      "fieldName": "serviceId",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "title",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "javadoc": "Услуга",
+  "jpaMetamodelFiltering": false,
+  "name": "Service",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "service",
+      "otherEntityRelationshipName": "service",
+      "ownerSide": true,
+      "relationshipName": "parent",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "no"
+}
