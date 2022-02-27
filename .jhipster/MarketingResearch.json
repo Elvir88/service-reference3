@@ -1,0 +1,36 @@
+{
+  "applications": "*",
+  "changelogDate": "20220227174005",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "marketing_research",
+  "fields": [
+    {
+      "fieldName": "title",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "MarketingResearch",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "service",
+      "otherEntityRelationshipName": "marketingResearch",
+      "ownerSide": true,
+      "relationshipName": "service",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "tariff",
+      "otherEntityRelationshipName": "marketingResearch",
+      "ownerSide": true,
+      "relationshipName": "tariff",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "no"
+}

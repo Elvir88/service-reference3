@@ -1,0 +1,44 @@
+{
+  "applications": "*",
+  "changelogDate": "20220227174006",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "service_in_packet_discount",
+  "fields": [
+    {
+      "fieldName": "coefficient",
+      "fieldType": "Float",
+      "fieldValidateRules": ["required", "max", "min"],
+      "fieldValidateRulesMax": "1",
+      "fieldValidateRulesMin": "0"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "ServiceInPacketDiscount",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "service",
+      "otherEntityRelationshipName": "serviceInPacketDiscount",
+      "ownerSide": true,
+      "relationshipName": "service",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "tariff",
+      "otherEntityRelationshipName": "serviceInPacketDiscount",
+      "ownerSide": true,
+      "relationshipName": "tariff",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "packetDiscount",
+      "otherEntityRelationshipName": "serviceInPacketDiscount",
+      "relationshipName": "packetDiscount",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

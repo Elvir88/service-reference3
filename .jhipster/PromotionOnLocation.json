@@ -1,0 +1,51 @@
+{
+  "applications": "*",
+  "changelogDate": "20220227174003",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "promotion_on_location",
+  "fields": [
+    {
+      "fieldName": "title",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "dateFrom",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "dateTo",
+      "fieldType": "Instant"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "PromotionOnLocation",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "packetDiscount",
+      "otherEntityRelationshipName": "promotionOnLocation",
+      "ownerSide": true,
+      "relationshipName": "packetDiscount",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "marketingResearch",
+      "otherEntityRelationshipName": "promotionOnLocation",
+      "ownerSide": true,
+      "relationshipName": "marketingResearch",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "location",
+      "otherEntityRelationshipName": "promotionOnLocation",
+      "relationshipName": "location",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}
