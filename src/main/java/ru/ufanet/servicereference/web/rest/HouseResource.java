@@ -147,12 +147,21 @@ public class HouseResource {
      * {@code GET  /houses} : get all the houses.
      *
      * @param pageable the pagination information.
+     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of houses in body.
      */
     @GetMapping("/houses")
-    public ResponseEntity<List<House>> getAllHouses(@org.springdoc.api.annotations.ParameterObject Pageable pageable) {
+    public ResponseEntity<List<House>> getAllHouses(
+        @org.springdoc.api.annotations.ParameterObject Pageable pageable,
+        @RequestParam(required = false, defaultValue = "true") boolean eagerload
+    ) {
         log.debug("REST request to get a page of Houses");
-        Page<House> page = houseRepository.findAll(pageable);
+        Page<House> page;
+        if (eagerload) {
+            page = houseRepository.findAllWithEagerRelationships(pageable);
+        } else {
+            page = houseRepository.findAll(pageable);
+        }
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
@@ -166,7 +175,7 @@ public class HouseResource {
     @GetMapping("/houses/{id}")
     public ResponseEntity<House> getHouse(@PathVariable Long id) {
         log.debug("REST request to get House : {}", id);
-        Optional<House> house = houseRepository.findById(id);
+        Optional<House> house = houseRepository.findOneWithEagerRelationships(id);
         return ResponseUtil.wrapOrNotFound(house);
     }
 

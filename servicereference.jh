@@ -54,25 +54,30 @@ entity ContractPattern {
 }
 
 relationship OneToMany {
-    Location to House{location}, 
-    TariffGroup{tariff} to Tariff, 
-    Location to ServiceOnLocation{location},
-    Location to PromotionOnLocation{location},
-    PacketDiscount to ServiceInPacketDiscount{packetDiscount},
+    Location to House{location(title)}, 
+    //TariffGroup{tariff} to Tariff, 
+    Location to ServiceOnLocation{location(title)},
+    Location to PromotionOnLocation{location(title)},
+    PacketDiscount 
+    to ServiceInPacketDiscount{packetDiscount(title)},
     
 }
 
 relationship OneToOne {
-    ServiceOnLocation{service} to Service,
-    ServiceOnLocation{tariffGroup} to TariffGroup,
-    ServiceOnLocation{pattern} to ContractPattern,
-    Service{parent} to Service, 
-    PromotionOnLocation{packetDiscount} to PacketDiscount,
-    ServiceInPacketDiscount{service} to Service,
-    ServiceInPacketDiscount{tariff} to Tariff,
-    MarketingResearch{service} to Service,
-    MarketingResearch{tariff} to Tariff,
-    PromotionOnLocation{marketingResearch} to MarketingResearch
+    ServiceOnLocation{service(title)} to Service,
+    ServiceOnLocation{tariffGroup(title)} to TariffGroup,
+    ServiceOnLocation{pattern(title)} to ContractPattern,
+    Service{service(title)} to Service, 
+    PromotionOnLocation{packetDiscount(title)} to PacketDiscount,
+    ServiceInPacketDiscount{service(title)} to Service,
+    ServiceInPacketDiscount{tariff(title)} to Tariff,
+    MarketingResearch{service(title)} to Service,
+    MarketingResearch{tariff(title)} to Tariff,
+    PromotionOnLocation{marketingResearch(title)} to MarketingResearch
+}
+
+relationship ManyToMany {
+Tariff{tariffGroup(title)} to TariffGroup{tariff(title)}
 }
 
 // Set pagination options

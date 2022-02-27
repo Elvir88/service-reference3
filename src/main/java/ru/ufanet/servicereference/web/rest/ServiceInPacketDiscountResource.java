@@ -144,12 +144,15 @@ public class ServiceInPacketDiscountResource {
     /**
      * {@code GET  /service-in-packet-discounts} : get all the serviceInPacketDiscounts.
      *
+     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of serviceInPacketDiscounts in body.
      */
     @GetMapping("/service-in-packet-discounts")
-    public List<ServiceInPacketDiscount> getAllServiceInPacketDiscounts() {
+    public List<ServiceInPacketDiscount> getAllServiceInPacketDiscounts(
+        @RequestParam(required = false, defaultValue = "false") boolean eagerload
+    ) {
         log.debug("REST request to get all ServiceInPacketDiscounts");
-        return serviceInPacketDiscountRepository.findAll();
+        return serviceInPacketDiscountRepository.findAllWithEagerRelationships();
     }
 
     /**
@@ -161,7 +164,7 @@ public class ServiceInPacketDiscountResource {
     @GetMapping("/service-in-packet-discounts/{id}")
     public ResponseEntity<ServiceInPacketDiscount> getServiceInPacketDiscount(@PathVariable Long id) {
         log.debug("REST request to get ServiceInPacketDiscount : {}", id);
-        Optional<ServiceInPacketDiscount> serviceInPacketDiscount = serviceInPacketDiscountRepository.findById(id);
+        Optional<ServiceInPacketDiscount> serviceInPacketDiscount = serviceInPacketDiscountRepository.findOneWithEagerRelationships(id);
         return ResponseUtil.wrapOrNotFound(serviceInPacketDiscount);
     }
 

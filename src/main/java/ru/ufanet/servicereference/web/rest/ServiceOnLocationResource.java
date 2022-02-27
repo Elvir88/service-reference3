@@ -153,14 +153,21 @@ public class ServiceOnLocationResource {
      * {@code GET  /service-on-locations} : get all the serviceOnLocations.
      *
      * @param pageable the pagination information.
+     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of serviceOnLocations in body.
      */
     @GetMapping("/service-on-locations")
     public ResponseEntity<List<ServiceOnLocation>> getAllServiceOnLocations(
-        @org.springdoc.api.annotations.ParameterObject Pageable pageable
+        @org.springdoc.api.annotations.ParameterObject Pageable pageable,
+        @RequestParam(required = false, defaultValue = "true") boolean eagerload
     ) {
         log.debug("REST request to get a page of ServiceOnLocations");
-        Page<ServiceOnLocation> page = serviceOnLocationRepository.findAll(pageable);
+        Page<ServiceOnLocation> page;
+        if (eagerload) {
+            page = serviceOnLocationRepository.findAllWithEagerRelationships(pageable);
+        } else {
+            page = serviceOnLocationRepository.findAll(pageable);
+        }
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
@@ -174,7 +181,7 @@ public class ServiceOnLocationResource {
     @GetMapping("/service-on-locations/{id}")
     public ResponseEntity<ServiceOnLocation> getServiceOnLocation(@PathVariable Long id) {
         log.debug("REST request to get ServiceOnLocation : {}", id);
-        Optional<ServiceOnLocation> serviceOnLocation = serviceOnLocationRepository.findById(id);
+        Optional<ServiceOnLocation> serviceOnLocation = serviceOnLocationRepository.findOneWithEagerRelationships(id);
         return ResponseUtil.wrapOrNotFound(serviceOnLocation);
     }
 

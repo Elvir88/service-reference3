@@ -3,6 +3,8 @@ package ru.ufanet.servicereference.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import org.hibernate.annotations.Cache;
@@ -31,9 +33,15 @@ public class Tariff implements Serializable {
     @Column(name = "cost", precision = 21, scale = 2, nullable = false)
     private BigDecimal cost;
 
-    @ManyToOne
+    @ManyToMany
+    @JoinTable(
+        name = "rel_tariff__tariff_group",
+        joinColumns = @JoinColumn(name = "tariff_id"),
+        inverseJoinColumns = @JoinColumn(name = "tariff_group_id")
+    )
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(value = { "tariffs" }, allowSetters = true)
-    private TariffGroup tariffGroup;
+    private Set<TariffGroup> tariffGroups = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -76,16 +84,28 @@ public class Tariff implements Serializable {
         this.cost = cost;
     }
 
-    public TariffGroup getTariffGroup() {
-        return this.tariffGroup;
+    public Set<TariffGroup> getTariffGroups() {
+        return this.tariffGroups;
     }
 
-    public void setTariffGroup(TariffGroup tariffGroup) {
-        this.tariffGroup = tariffGroup;
+    public void setTariffGroups(Set<TariffGroup> tariffGroups) {
+        this.tariffGroups = tariffGroups;
     }
 
-    public Tariff tariffGroup(TariffGroup tariffGroup) {
-        this.setTariffGroup(tariffGroup);
+    public Tariff tariffGroups(Set<TariffGroup> tariffGroups) {
+        this.setTariffGroups(tariffGroups);
+        return this;
+    }
+
+    public Tariff addTariffGroup(TariffGroup tariffGroup) {
+        this.tariffGroups.add(tariffGroup);
+        tariffGroup.getTariffs().add(this);
+        return this;
+    }
+
+    public Tariff removeTariffGroup(TariffGroup tariffGroup) {
+        this.tariffGroups.remove(tariffGroup);
+        tariffGroup.getTariffs().remove(this);
         return this;
     }
 

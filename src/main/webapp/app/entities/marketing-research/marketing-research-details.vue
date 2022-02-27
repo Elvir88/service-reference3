@@ -18,7 +18,7 @@
           <dd>
             <div v-if="marketingResearch.service">
               <router-link :to="{ name: 'ServiceView', params: { serviceId: marketingResearch.service.id } }">{{
-                marketingResearch.service.id
+                marketingResearch.service.title
               }}</router-link>
             </div>
           </dd>
@@ -28,7 +28,7 @@
           <dd>
             <div v-if="marketingResearch.tariff">
               <router-link :to="{ name: 'TariffView', params: { tariffId: marketingResearch.tariff.id } }">{{
-                marketingResearch.tariff.id
+                marketingResearch.tariff.title
               }}</router-link>
             </div>
           </dd>

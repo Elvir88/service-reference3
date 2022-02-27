@@ -53,7 +53,7 @@
                 v-for="serviceOption in services"
                 :key="serviceOption.id"
               >
-                {{ serviceOption.id }}
+                {{ serviceOption.title }}
               </option>
             </select>
           </div>
@@ -70,7 +70,7 @@
                 v-for="tariffOption in tariffs"
                 :key="tariffOption.id"
               >
-                {{ tariffOption.id }}
+                {{ tariffOption.title }}
               </option>
             </select>
           </div>

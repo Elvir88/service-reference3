@@ -28,12 +28,12 @@ public class ServiceInPacketDiscount implements Serializable {
     @Column(name = "coefficient", nullable = false)
     private Float coefficient;
 
-    @JsonIgnoreProperties(value = { "parent" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "service" }, allowSetters = true)
     @OneToOne
     @JoinColumn(unique = true)
     private Service service;
 
-    @JsonIgnoreProperties(value = { "tariffGroup" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "tariffGroups" }, allowSetters = true)
     @OneToOne
     @JoinColumn(unique = true)
     private Tariff tariff;

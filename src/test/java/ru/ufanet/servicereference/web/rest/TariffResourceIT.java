@@ -2,19 +2,26 @@ package ru.ufanet.servicereference.web.rest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static ru.ufanet.servicereference.web.rest.TestUtil.sameNumber;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicLong;
 import javax.persistence.EntityManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
@@ -27,6 +34,7 @@ import ru.ufanet.servicereference.repository.TariffRepository;
  * Integration tests for the {@link TariffResource} REST controller.
  */
 @IntegrationTest
+@ExtendWith(MockitoExtension.class)
 @AutoConfigureMockMvc
 @WithMockUser
 class TariffResourceIT {
@@ -45,6 +53,9 @@ class TariffResourceIT {
 
     @Autowired
     private TariffRepository tariffRepository;
+
+    @Mock
+    private TariffRepository tariffRepositoryMock;
 
     @Autowired
     private EntityManager em;
@@ -164,6 +175,24 @@ class TariffResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(tariff.getId().intValue())))
             .andExpect(jsonPath("$.[*].title").value(hasItem(DEFAULT_TITLE)))
             .andExpect(jsonPath("$.[*].cost").value(hasItem(sameNumber(DEFAULT_COST))));
+    }
+
+    @SuppressWarnings({ "unchecked" })
+    void getAllTariffsWithEagerRelationshipsIsEnabled() throws Exception {
+        when(tariffRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+
+        restTariffMockMvc.perform(get(ENTITY_API_URL + "?eagerload=true")).andExpect(status().isOk());
+
+        verify(tariffRepositoryMock, times(1)).findAllWithEagerRelationships(any());
+    }
+
+    @SuppressWarnings({ "unchecked" })
+    void getAllTariffsWithEagerRelationshipsIsNotEnabled() throws Exception {
+        when(tariffRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+
+        restTariffMockMvc.perform(get(ENTITY_API_URL + "?eagerload=true")).andExpect(status().isOk());
+
+        verify(tariffRepositoryMock, times(1)).findAllWithEagerRelationships(any());
     }
 
     @Test

@@ -28,9 +28,9 @@ public class TariffGroup implements Serializable {
     @Column(name = "title", nullable = false)
     private String title;
 
-    @OneToMany(mappedBy = "tariffGroup")
+    @ManyToMany(mappedBy = "tariffGroups")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "tariffGroup" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "tariffGroups" }, allowSetters = true)
     private Set<Tariff> tariffs = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -67,10 +67,10 @@ public class TariffGroup implements Serializable {
 
     public void setTariffs(Set<Tariff> tariffs) {
         if (this.tariffs != null) {
-            this.tariffs.forEach(i -> i.setTariffGroup(null));
+            this.tariffs.forEach(i -> i.removeTariffGroup(this));
         }
         if (tariffs != null) {
-            tariffs.forEach(i -> i.setTariffGroup(this));
+            tariffs.forEach(i -> i.addTariffGroup(this));
         }
         this.tariffs = tariffs;
     }
@@ -82,13 +82,13 @@ public class TariffGroup implements Serializable {
 
     public TariffGroup addTariff(Tariff tariff) {
         this.tariffs.add(tariff);
-        tariff.setTariffGroup(this);
+        tariff.getTariffGroups().add(this);
         return this;
     }
 
     public TariffGroup removeTariff(Tariff tariff) {
         this.tariffs.remove(tariff);
-        tariff.setTariffGroup(null);
+        tariff.getTariffGroups().remove(this);
         return this;
     }
 

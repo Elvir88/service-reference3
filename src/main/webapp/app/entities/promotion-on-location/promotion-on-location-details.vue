@@ -30,7 +30,7 @@
           <dd>
             <div v-if="promotionOnLocation.packetDiscount">
               <router-link :to="{ name: 'PacketDiscountView', params: { packetDiscountId: promotionOnLocation.packetDiscount.id } }">{{
-                promotionOnLocation.packetDiscount.id
+                promotionOnLocation.packetDiscount.title
               }}</router-link>
             </div>
           </dd>
@@ -41,7 +41,7 @@
             <div v-if="promotionOnLocation.marketingResearch">
               <router-link
                 :to="{ name: 'MarketingResearchView', params: { marketingResearchId: promotionOnLocation.marketingResearch.id } }"
-                >{{ promotionOnLocation.marketingResearch.id }}</router-link
+                >{{ promotionOnLocation.marketingResearch.title }}</router-link
               >
             </div>
           </dd>
@@ -51,7 +51,7 @@
           <dd>
             <div v-if="promotionOnLocation.location">
               <router-link :to="{ name: 'LocationView', params: { locationId: promotionOnLocation.location.id } }">{{
-                promotionOnLocation.location.id
+                promotionOnLocation.location.title
               }}</router-link>
             </div>
           </dd>

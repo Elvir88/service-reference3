@@ -67,6 +67,7 @@ public class CacheConfiguration {
             createCache(cm, ru.ufanet.servicereference.domain.MarketingResearch.class.getName());
             createCache(cm, ru.ufanet.servicereference.domain.ServiceInPacketDiscount.class.getName());
             createCache(cm, ru.ufanet.servicereference.domain.ContractPattern.class.getName());
+            createCache(cm, ru.ufanet.servicereference.domain.Tariff.class.getName() + ".tariffGroups");
             // jhipster-needle-ehcache-add-entry
         };
     }

@@ -40,9 +40,9 @@
               <span v-text="$t('serviceReference3App.service.title')">Title</span>
               <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'title'"></jhi-sort-indicator>
             </th>
-            <th scope="row" v-on:click="changeOrder('parent.id')">
-              <span v-text="$t('serviceReference3App.service.parent')">Parent</span>
-              <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'parent.id'"></jhi-sort-indicator>
+            <th scope="row" v-on:click="changeOrder('service.title')">
+              <span v-text="$t('serviceReference3App.service.service')">Service</span>
+              <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'service.title'"></jhi-sort-indicator>
             </th>
             <th scope="row"></th>
           </tr>
@@ -55,8 +55,10 @@
             <td>{{ service.serviceId }}</td>
             <td>{{ service.title }}</td>
             <td>
-              <div v-if="service.parent">
-                <router-link :to="{ name: 'ServiceView', params: { serviceId: service.parent.id } }">{{ service.parent.id }}</router-link>
+              <div v-if="service.service">
+                <router-link :to="{ name: 'ServiceView', params: { serviceId: service.service.id } }">{{
+                  service.service.title
+                }}</router-link>
               </div>
             </td>
             <td class="text-right">

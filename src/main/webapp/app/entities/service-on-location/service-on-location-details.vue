@@ -24,7 +24,7 @@
           <dd>
             <div v-if="serviceOnLocation.service">
               <router-link :to="{ name: 'ServiceView', params: { serviceId: serviceOnLocation.service.id } }">{{
-                serviceOnLocation.service.id
+                serviceOnLocation.service.title
               }}</router-link>
             </div>
           </dd>
@@ -34,7 +34,7 @@
           <dd>
             <div v-if="serviceOnLocation.tariffGroup">
               <router-link :to="{ name: 'TariffGroupView', params: { tariffGroupId: serviceOnLocation.tariffGroup.id } }">{{
-                serviceOnLocation.tariffGroup.id
+                serviceOnLocation.tariffGroup.title
               }}</router-link>
             </div>
           </dd>
@@ -44,7 +44,7 @@
           <dd>
             <div v-if="serviceOnLocation.pattern">
               <router-link :to="{ name: 'ContractPatternView', params: { contractPatternId: serviceOnLocation.pattern.id } }">{{
-                serviceOnLocation.pattern.id
+                serviceOnLocation.pattern.title
               }}</router-link>
             </div>
           </dd>
@@ -54,7 +54,7 @@
           <dd>
             <div v-if="serviceOnLocation.location">
               <router-link :to="{ name: 'LocationView', params: { locationId: serviceOnLocation.location.id } }">{{
-                serviceOnLocation.location.id
+                serviceOnLocation.location.title
               }}</router-link>
             </div>
           </dd>

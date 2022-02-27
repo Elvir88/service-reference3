@@ -32,7 +32,7 @@ public class ServiceOnLocation implements Serializable {
     @Column(name = "date_to")
     private Instant dateTo;
 
-    @JsonIgnoreProperties(value = { "parent" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "service" }, allowSetters = true)
     @OneToOne
     @JoinColumn(unique = true)
     private Service service;

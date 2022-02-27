@@ -44,7 +44,7 @@
                 v-for="locationOption in locations"
                 :key="locationOption.id"
               >
-                {{ locationOption.id }}
+                {{ locationOption.title }}
               </option>
             </select>
           </div>

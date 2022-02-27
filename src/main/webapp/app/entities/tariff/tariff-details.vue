@@ -22,11 +22,12 @@
             <span v-text="$t('serviceReference3App.tariff.tariffGroup')">Tariff Group</span>
           </dt>
           <dd>
-            <div v-if="tariff.tariffGroup">
-              <router-link :to="{ name: 'TariffGroupView', params: { tariffGroupId: tariff.tariffGroup.id } }">{{
-                tariff.tariffGroup.id
+            <span v-for="(tariffGroup, i) in tariff.tariffGroups" :key="tariffGroup.id"
+              >{{ i > 0 ? ', ' : '' }}
+              <router-link :to="{ name: 'TariffGroupView', params: { tariffGroupId: tariffGroup.id } }">{{
+                tariffGroup.title
               }}</router-link>
-            </div>
+            </span>
           </dd>
         </dl>
         <button type="submit" v-on:click.prevent="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">

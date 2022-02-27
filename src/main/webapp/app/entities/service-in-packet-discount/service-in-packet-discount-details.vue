@@ -19,7 +19,7 @@
           <dd>
             <div v-if="serviceInPacketDiscount.service">
               <router-link :to="{ name: 'ServiceView', params: { serviceId: serviceInPacketDiscount.service.id } }">{{
-                serviceInPacketDiscount.service.id
+                serviceInPacketDiscount.service.title
               }}</router-link>
             </div>
           </dd>
@@ -29,7 +29,7 @@
           <dd>
             <div v-if="serviceInPacketDiscount.tariff">
               <router-link :to="{ name: 'TariffView', params: { tariffId: serviceInPacketDiscount.tariff.id } }">{{
-                serviceInPacketDiscount.tariff.id
+                serviceInPacketDiscount.tariff.title
               }}</router-link>
             </div>
           </dd>
@@ -39,7 +39,7 @@
           <dd>
             <div v-if="serviceInPacketDiscount.packetDiscount">
               <router-link :to="{ name: 'PacketDiscountView', params: { packetDiscountId: serviceInPacketDiscount.packetDiscount.id } }">{{
-                serviceInPacketDiscount.packetDiscount.id
+                serviceInPacketDiscount.packetDiscount.title
               }}</router-link>
             </div>
           </dd>

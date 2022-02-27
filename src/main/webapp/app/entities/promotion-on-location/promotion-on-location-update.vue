@@ -118,7 +118,7 @@
                 v-for="packetDiscountOption in packetDiscounts"
                 :key="packetDiscountOption.id"
               >
-                {{ packetDiscountOption.id }}
+                {{ packetDiscountOption.title }}
               </option>
             </select>
           </div>
@@ -146,7 +146,7 @@
                 v-for="marketingResearchOption in marketingResearches"
                 :key="marketingResearchOption.id"
               >
-                {{ marketingResearchOption.id }}
+                {{ marketingResearchOption.title }}
               </option>
             </select>
           </div>
@@ -174,7 +174,7 @@
                 v-for="locationOption in locations"
                 :key="locationOption.id"
               >
-                {{ locationOption.id }}
+                {{ locationOption.title }}
               </option>
             </select>
           </div>

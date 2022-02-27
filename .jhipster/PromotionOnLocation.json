@@ -27,6 +27,7 @@
   "readOnly": false,
   "relationships": [
     {
+      "otherEntityField": "title",
       "otherEntityName": "packetDiscount",
       "otherEntityRelationshipName": "promotionOnLocation",
       "ownerSide": true,
@@ -34,6 +35,7 @@
       "relationshipType": "one-to-one"
     },
     {
+      "otherEntityField": "title",
       "otherEntityName": "marketingResearch",
       "otherEntityRelationshipName": "promotionOnLocation",
       "ownerSide": true,
@@ -41,6 +43,7 @@
       "relationshipType": "one-to-one"
     },
     {
+      "otherEntityField": "title",
       "otherEntityName": "location",
       "otherEntityRelationshipName": "promotionOnLocation",
       "relationshipName": "location",

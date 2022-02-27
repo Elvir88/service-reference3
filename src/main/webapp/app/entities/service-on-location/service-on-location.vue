@@ -40,21 +40,21 @@
               <span v-text="$t('serviceReference3App.serviceOnLocation.dateTo')">Date To</span>
               <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'dateTo'"></jhi-sort-indicator>
             </th>
-            <th scope="row" v-on:click="changeOrder('service.id')">
+            <th scope="row" v-on:click="changeOrder('service.title')">
               <span v-text="$t('serviceReference3App.serviceOnLocation.service')">Service</span>
-              <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'service.id'"></jhi-sort-indicator>
+              <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'service.title'"></jhi-sort-indicator>
             </th>
-            <th scope="row" v-on:click="changeOrder('tariffGroup.id')">
+            <th scope="row" v-on:click="changeOrder('tariffGroup.title')">
               <span v-text="$t('serviceReference3App.serviceOnLocation.tariffGroup')">Tariff Group</span>
-              <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'tariffGroup.id'"></jhi-sort-indicator>
+              <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'tariffGroup.title'"></jhi-sort-indicator>
             </th>
-            <th scope="row" v-on:click="changeOrder('pattern.id')">
+            <th scope="row" v-on:click="changeOrder('pattern.title')">
               <span v-text="$t('serviceReference3App.serviceOnLocation.pattern')">Pattern</span>
-              <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'pattern.id'"></jhi-sort-indicator>
+              <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'pattern.title'"></jhi-sort-indicator>
             </th>
-            <th scope="row" v-on:click="changeOrder('location.id')">
+            <th scope="row" v-on:click="changeOrder('location.title')">
               <span v-text="$t('serviceReference3App.serviceOnLocation.location')">Location</span>
-              <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'location.id'"></jhi-sort-indicator>
+              <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'location.title'"></jhi-sort-indicator>
             </th>
             <th scope="row"></th>
           </tr>
@@ -71,28 +71,28 @@
             <td>
               <div v-if="serviceOnLocation.service">
                 <router-link :to="{ name: 'ServiceView', params: { serviceId: serviceOnLocation.service.id } }">{{
-                  serviceOnLocation.service.id
+                  serviceOnLocation.service.title
                 }}</router-link>
               </div>
             </td>
             <td>
               <div v-if="serviceOnLocation.tariffGroup">
                 <router-link :to="{ name: 'TariffGroupView', params: { tariffGroupId: serviceOnLocation.tariffGroup.id } }">{{
-                  serviceOnLocation.tariffGroup.id
+                  serviceOnLocation.tariffGroup.title
                 }}</router-link>
               </div>
             </td>
             <td>
               <div v-if="serviceOnLocation.pattern">
                 <router-link :to="{ name: 'ContractPatternView', params: { contractPatternId: serviceOnLocation.pattern.id } }">{{
-                  serviceOnLocation.pattern.id
+                  serviceOnLocation.pattern.title
                 }}</router-link>
               </div>
             </td>
             <td>
               <div v-if="serviceOnLocation.location">
                 <router-link :to="{ name: 'LocationView', params: { locationId: serviceOnLocation.location.id } }">{{
-                  serviceOnLocation.location.id
+                  serviceOnLocation.location.title
                 }}</router-link>
               </div>
             </td>

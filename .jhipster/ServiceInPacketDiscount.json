@@ -20,6 +20,7 @@
   "readOnly": false,
   "relationships": [
     {
+      "otherEntityField": "title",
       "otherEntityName": "service",
       "otherEntityRelationshipName": "serviceInPacketDiscount",
       "ownerSide": true,
@@ -27,6 +28,7 @@
       "relationshipType": "one-to-one"
     },
     {
+      "otherEntityField": "title",
       "otherEntityName": "tariff",
       "otherEntityRelationshipName": "serviceInPacketDiscount",
       "ownerSide": true,
@@ -34,6 +36,7 @@
       "relationshipType": "one-to-one"
     },
     {
+      "otherEntityField": "title",
       "otherEntityName": "packetDiscount",
       "otherEntityRelationshipName": "serviceInPacketDiscount",
       "relationshipName": "packetDiscount",

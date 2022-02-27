@@ -32,10 +32,10 @@ public class Service implements Serializable {
     @Column(name = "title", nullable = false)
     private String title;
 
-    @JsonIgnoreProperties(value = { "parent" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "service" }, allowSetters = true)
     @OneToOne
     @JoinColumn(unique = true)
-    private Service parent;
+    private Service service;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -78,16 +78,16 @@ public class Service implements Serializable {
         this.title = title;
     }
 
-    public Service getParent() {
-        return this.parent;
+    public Service getService() {
+        return this.service;
     }
 
-    public void setParent(Service service) {
-        this.parent = service;
+    public void setService(Service service) {
+        this.service = service;
     }
 
-    public Service parent(Service service) {
-        this.setParent(service);
+    public Service service(Service service) {
+        this.setService(service);
         return this;
     }
 

@@ -18,10 +18,12 @@
   "readOnly": false,
   "relationships": [
     {
+      "otherEntityField": "title",
       "otherEntityName": "tariff",
       "otherEntityRelationshipName": "tariffGroup",
+      "ownerSide": false,
       "relationshipName": "tariff",
-      "relationshipType": "one-to-many"
+      "relationshipType": "many-to-many"
     }
   ],
   "service": "no"

@@ -36,9 +36,9 @@
               <span v-text="$t('serviceReference3App.house.houseId')">House Id</span>
               <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'houseId'"></jhi-sort-indicator>
             </th>
-            <th scope="row" v-on:click="changeOrder('location.id')">
+            <th scope="row" v-on:click="changeOrder('location.title')">
               <span v-text="$t('serviceReference3App.house.location')">Location</span>
-              <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'location.id'"></jhi-sort-indicator>
+              <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'location.title'"></jhi-sort-indicator>
             </th>
             <th scope="row"></th>
           </tr>
@@ -51,7 +51,9 @@
             <td>{{ house.houseId }}</td>
             <td>
               <div v-if="house.location">
-                <router-link :to="{ name: 'LocationView', params: { locationId: house.location.id } }">{{ house.location.id }}</router-link>
+                <router-link :to="{ name: 'LocationView', params: { locationId: house.location.id } }">{{
+                  house.location.title
+                }}</router-link>
               </div>
             </td>
             <td class="text-right">

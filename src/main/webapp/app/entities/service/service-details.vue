@@ -19,11 +19,13 @@
             <span>{{ service.title }}</span>
           </dd>
           <dt>
-            <span v-text="$t('serviceReference3App.service.parent')">Parent</span>
+            <span v-text="$t('serviceReference3App.service.service')">Service</span>
           </dt>
           <dd>
-            <div v-if="service.parent">
-              <router-link :to="{ name: 'ServiceView', params: { serviceId: service.parent.id } }">{{ service.parent.id }}</router-link>
+            <div v-if="service.service">
+              <router-link :to="{ name: 'ServiceView', params: { serviceId: service.service.id } }">{{
+                service.service.title
+              }}</router-link>
             </div>
           </dd>
         </dl>
